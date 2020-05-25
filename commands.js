@@ -166,6 +166,7 @@ module.exports.run = async (channel, command, db) => {
           progress = await progress.edit(embed("Uploading...", "The output of your command is being uploaded."));
 
           const res = await fetch("https://txt.pwnsquad.net/", {
+            method: "POST",
             headers: {
               "Content-Type": "text/plain",
               "Authorization": process.env.TXT_TOKEN
