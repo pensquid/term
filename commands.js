@@ -1,8 +1,8 @@
 const Docker = require("dockerode");
 const docker = new Docker();
 
-const Transfer = require("./transfer");
 const fs = require("fs");
+const fetch = require("node-fetch");
 
 const stripAnsi = require("strip-ansi");
 const associations = require("./associations");
@@ -165,35 +165,22 @@ module.exports.run = async (channel, command, db) => {
         if (output.length > 2000) {
           progress = await progress.edit(embed("Uploading...", "The output of your command is being uploaded."));
 
-          const time = Date.now();
-          if (!fs.existsSync("uploads")) fs.mkdirSync("uploads");
-          fs.writeFile(`./uploads/${time}.txt`, output, async (error) => {
-            if (error) {
-              await progress.edit(displayError(error));
-              return;
-            }
-
-            new Transfer(`./uploads/${time}.txt`)
-              .upload()
-              .then(async (url) => {
-                console.log("URL", url);
-                await progress.edit(
-                  embed(
-                    "Done",
-                    "The output of your command was greater than 2000 characters, so it was uploaded.\n" + url
-                  )
-                );
-              })
-              .catch(async (error) => {
-                await progress.edit(displayError(error));
-              });
-
-            fs.unlink(`./uploads/${time}.txt`, async (error) => {
-              if (error) {
-                await progress.edit(displayError(error));
-              }
-            });
+          const res = await fetch("https://txt.pwnsquad.net/", {
+            headers: {
+              "Content-Type": "text/plain",
+              "Authorization": process.env.TXT_TOKEN
+            },
+            body: output
           });
+          const path = await res.text();
+          const url = `https://txt.pwnsquad.net/${encodeURIComponent(path)}`
+
+          await progress.edit(
+            embed(
+              "Done",
+              "The output of your command was greater than 2000 characters, so it was uploaded.\n" + url
+            )
+          );
         } else {
           await progress.edit(embed("Done", "```\n" + output + "\n```"));
         }

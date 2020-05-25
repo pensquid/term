@@ -24,6 +24,7 @@
     "dockerode": "^2.5.7",
     "dotenv": "^8.2.0",
     "lowdb": "^1.0.0",
+    "node-fetch": "^2.6.0",
     "strip-ansi": "^5.0.0"
   },
   "devDependencies": {
