@@ -35,6 +35,10 @@ Below are our current associations. Feel free to open an issue or merge request 
 
 To use an association, for example `python`, use `$ create python`.
 
+## Running
+
+Since Term is open-source you might want to run it yourself, for whatever reason. Here's how.
+
 ### Installation
 
 You'll need to [install Docker](https://docs.docker.com/install/) first.

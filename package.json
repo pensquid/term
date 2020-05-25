@@ -1,0 +1,31 @@
+{
+  "name": "term",
+  "version": "1.0.0",
+  "description": "A Discord bot that will let you run bash commands in Docker containers.",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "dev": "nodemon bot.js --ignore db.json",
+    "deploy": "ssh root@$PWNSH \"cd /deployments/term && git pull && yarn && pm2 restart Term\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pwnsquad/term.git"
+  },
+  "author": "PwnSquad",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/pwnsquad/term/issues"
+  },
+  "homepage": "https://github.com/pwnsquad/term#readme",
+  "dependencies": {
+    "dblapi.js": "^2.3.0",
+    "discord.js": "^11.4.2",
+    "dockerode": "^2.5.7",
+    "lowdb": "^1.0.0",
+    "strip-ansi": "^5.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.7"
+  }
+}
