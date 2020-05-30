@@ -12,11 +12,4 @@ module.exports = {
 
   // limit memory so they can't consume it all
   Memory: mb * 64,
-
-  // so docker warned that this might be bad, but limits can't ever be bad!
-  // I'm sure the kernel will be fine with running out of memory in the container,
-  // there are zero things that could go wrong
-  //
-  // ZERO
-  KernelMemory: mb * 64,
 }
