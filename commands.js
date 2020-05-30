@@ -6,6 +6,7 @@ const fs = require("fs");
 
 const stripAnsi = require("strip-ansi");
 const associations = require("./associations");
+const limits = require('./limits')
 
 const embed = (name, content) => {
   return {
@@ -44,7 +45,8 @@ module.exports.create = async (channel, db, associationKey) => {
     {
       Image: image,
       Tty: true,
-      Cmd: [ "/bin/sh" ]
+      Cmd: [ "/bin/sh" ],
+      ...limits
     },
     async (error, container) => {
       if (error) {
