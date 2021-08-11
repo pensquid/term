@@ -1,3 +1,7 @@
+> ⚠️ **This project is temporarily on hold!** ⚠️
+> 
+> I don't have the time or energy to update this right now but I will get back to it soon.
+
 # Term
 
 A Discord bot that will let you run commands in Docker containers. In other words, you can create a totally isolated computer, optionally with preinstalled programs, per channel.
